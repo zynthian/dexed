@@ -51,7 +51,6 @@ enum DexedEngineResolution {
 };
 
 // GLOBALS
-//float scaler = 0.0000000025;
 
 //==============================================================================
 
@@ -98,14 +97,14 @@ class Dexed : public lvtk::Synth<DexedVoice, Dexed>
     void keydown(uint8_t pitch, uint8_t velo);
     void panic(void);
 
-    //static const uint8_t MAX_ACTIVE_NOTES = 16;
     static const uint8_t MAX_ACTIVE_NOTES = 32;
+    uint8_t max_notes;
     ProcessorVoice voices[MAX_ACTIVE_NOTES];
     uint8_t currentNote;
     bool sustain;
     bool monoMode;
     bool refreshVoice;
-    bool normalizeDxVelocity;
+    //bool normalizeDxVelocity;
     uint8_t engineType;
     uint8_t feedback_bitdepth;
     PluginFx fx;
@@ -122,8 +121,8 @@ class Dexed : public lvtk::Synth<DexedVoice, Dexed>
     double _rate;
     uint8_t _k_rate_counter;
     uint8_t _param_change_counter;
-    float data_float[172];
-    uint8_t data[172]={
+    float data_float[173];
+    uint8_t data[173]={
       95, 29, 20, 50, 99, 95, 00, 00, 41, 00, 19, 00, 00, 03, 00, 06, 79, 00, 01, 00, 14,
       95, 20, 20, 50, 99, 95, 00, 00, 00, 00, 00, 00, 00, 03, 00, 00, 99, 00, 01, 00, 00,
       95, 29, 20, 50, 99, 95, 00, 00, 00, 00, 00, 00, 00, 03, 00, 06, 89, 00, 01, 00, 07,
@@ -137,7 +136,8 @@ class Dexed : public lvtk::Synth<DexedVoice, Dexed>
       00, 00, 00, 00, 00, 00, 00, 00, 00, 00,
       01, 00, 99, 00, 99, 00, 99, 00, 99, 00,
       00,
-      01, 01, 01, 01, 01, 01
+      01, 01, 01, 01, 01, 01,
+      16
    };
 };
 
