@@ -1,4 +1,22 @@
-// from: http://ll-plugins.nongnu.org/lv2pftci/#A_synth
+/**
+ *
+ * Copyright (c) 2016-2017 Holger Wirtz <dcoredump@googlemail.com>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
+ *
+ */
 
 #include <lvtk/synth.hpp>
 #include "dexed.h"
@@ -691,6 +709,7 @@ TRACE("Bye");
 
 void Dexed::onParam(uint8_t param_num,float param_val)
 {
+  int32_t tune;
 
   if(param_val!=data_float[param_num])
   {
@@ -756,7 +775,11 @@ void Dexed::onParam(uint8_t param_num,float param_val)
         break;
       case 172:
         max_notes=data[param_num];
+<<<<<<< HEAD
         break;
+=======
+	break;
+>>>>>>> native-lv2
     }
 
     TRACE("Done: Parameter %d changed from %d to %d",param_num, tmp, data[param_num]);

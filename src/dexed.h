@@ -98,7 +98,11 @@ class Dexed : public lvtk::Synth<DexedVoice, Dexed>
     void panic(void);
 
     static const uint8_t MAX_ACTIVE_NOTES = 32;
+<<<<<<< HEAD
     uint8_t max_notes;
+=======
+    uint8_t max_notes=MAX_ACTIVE_NOTES;
+>>>>>>> native-lv2
     ProcessorVoice voices[MAX_ACTIVE_NOTES];
     uint8_t currentNote;
     bool sustain;
