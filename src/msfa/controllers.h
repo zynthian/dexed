@@ -21,6 +21,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "trace.h"
+#include <algorithm>
 
 #ifdef _WIN32
 #define snprintf _snprintf
@@ -64,26 +65,35 @@ struct FmMod {
 
 class Controllers {
     void applyMod(int cc, FmMod &mod) {
-        float range = 0.01 * mod.range;
-        uint8_t total = (float)cc * range;
-        TRACE("amp[%d]|pitch[%d]|eg[%d]",mod.amp,mod.pitch,mod.eg);
-        TRACE("range=%f mod.range=%d total=%d cc=%d",range,mod.range,total,cc);
-        if(mod.amp)
+        int total = float(cc) * 0.01 * float(mod.range);
+
+        TRACE("Controllers: amp[%d]|pitch[%d]|eg[%d]",mod.amp,mod.pitch,mod.eg);
+
+        if(mod.amp==true)
+	{
+          TRACE("AMP total=%d cc=%d",total,cc);
           amp_mod = max(amp_mod, total);
+	}
         
-        if(mod.pitch)
+        if(mod.pitch==true)
+	{
+          TRACE("MOD range=%f mod.range=%d total=%d cc=%d",range,mod.range,total,cc);
           pitch_mod = max(pitch_mod, total);
+	}
         
-        if(mod.eg)
+        if(mod.eg==true)
+	{
+          TRACE("EG range=%f mod.range=%d total=%d cc=%d",range,mod.range,total,cc);
 	  eg_mod = max(eg_mod, total);
+	}
     }
     
 public:
     int32_t values_[3];
     
-    uint8_t amp_mod;
-    uint8_t pitch_mod;
-    uint8_t eg_mod;
+    int amp_mod;
+    int pitch_mod;
+    int eg_mod;
     
     uint8_t aftertouch_cc;
     uint8_t breath_cc;
